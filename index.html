@@ -993,24 +993,53 @@
         box-shadow: none !important;
       }
 
-      .print-bill .bill-header-block,
-      .print-bill .bill-items-bar,
-      .print-bill .bill-grand-total,
-      .print-bill .bill-footer-bar {
-        background: #1a1a1a !important;
-        color: #fff !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
+      /* ── THERMAL-FRIENDLY: no dark fills, black text on white ── */
+      .print-bill .bill-header-block {
+        background: #fff !important;
+        color: #000 !important;
+        border-bottom: 2px solid #000 !important;
       }
-
+      .print-bill .bill-brand-line1,
+      .print-bill .bill-brand-line2 {
+        color: #000 !important;
+      }
+      .print-bill .bill-tagline {
+        color: #333 !important;
+      }
+      .print-bill .bill-address {
+        color: #444 !important;
+      }
+      .print-bill .bill-items-bar {
+        background: #fff !important;
+        color: #000 !important;
+        border-top: 2px solid #000 !important;
+        border-bottom: 2px solid #000 !important;
+      }
+      .print-bill .bill-grand-total {
+        background: #fff !important;
+        color: #000 !important;
+        border-top: 2px solid #000 !important;
+        border-bottom: 2px solid #000 !important;
+      }
+      .print-bill .bill-grand-total .gt-label,
+      .print-bill .bill-grand-total .gt-amount {
+        color: #000 !important;
+        font-size: 15px !important;
+      }
+      .print-bill .bill-footer-bar {
+        background: #fff !important;
+        color: #000 !important;
+        border-top: 1px solid #000 !important;
+      }
       .print-bill .bill-inv-badge {
-        background: #1a1a1a !important;
-        color: #fff !important;
+        background: #fff !important;
+        color: #000 !important;
+        border: 1.5px solid #000 !important;
       }
 
       @page {
-        margin: 10mm;
-        size: auto;
+        margin: 4mm;
+        size: 80mm auto;
       }
     }
 
@@ -1135,27 +1164,28 @@
     }
 
     .bill-header-block {
-      background: #1a1a1a;
-      color: #fff;
+      background: #fff;
+      color: #000;
       text-align: center;
-      padding: 22px 16px 18px;
+      padding: 16px 16px 14px;
+      border-bottom: 2px solid #000;
     }
 
     .bill-brand-line1 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 6px;
-      color: #fff;
+      letter-spacing: 8px;
+      color: #000;
       text-transform: uppercase;
     }
 
     .bill-brand-line2 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 34px;
+      font-size: 30px;
       font-weight: 900;
-      letter-spacing: 4px;
-      color: #fff;
+      letter-spacing: 6px;
+      color: #000;
       text-transform: uppercase;
       line-height: 1;
       margin-top: 2px;
@@ -1163,8 +1193,8 @@
 
     .bill-tagline {
       font-size: 8.5px;
-      color: rgba(255, 255, 255, .75);
-      margin-top: 10px;
+      color: #444;
+      margin-top: 8px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       font-weight: 600;
@@ -1172,9 +1202,9 @@
 
     .bill-address {
       font-size: 8.5px;
-      color: rgba(255, 255, 255, .55);
-      margin-top: 8px;
-      line-height: 1.55;
+      color: #555;
+      margin-top: 6px;
+      line-height: 1.6;
     }
 
     .bill-meta-row {
@@ -1196,14 +1226,15 @@
 
     .bill-inv-badge {
       display: inline-block;
-      background: #1a1a1a;
-      color: #fff;
+      background: #fff;
+      color: #000;
       font-family: 'JetBrains Mono', 'Courier New', monospace;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: .5px;
-      padding: 4px 10px;
+      padding: 3px 8px;
       margin-bottom: 4px;
+      border: 1.5px solid #000;
     }
 
     .bill-meta-col .meta-date {
@@ -1231,13 +1262,15 @@
     .bill-items-bar {
       display: grid;
       grid-template-columns: 1fr 36px 62px 72px;
-      background: #1a1a1a;
-      color: #fff;
+      background: #fff;
+      color: #000;
       padding: 7px 16px;
-      font-size: 8px;
+      font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .8px;
+      border-top: 2px solid #000;
+      border-bottom: 2px solid #000;
     }
 
     .bill-items-bar span:nth-child(2),
@@ -1318,10 +1351,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #1a1a1a;
-      color: #fff;
+      background: #fff;
+      color: #000;
       padding: 12px 16px;
       margin-top: 4px;
+      border-top: 2px solid #000;
+      border-bottom: 2px solid #000;
     }
 
     .bill-grand-total .gt-label {
@@ -1330,12 +1365,14 @@
       font-weight: 800;
       letter-spacing: 1px;
       text-transform: uppercase;
+      color: #000;
     }
 
     .bill-grand-total .gt-amount {
       font-family: 'JetBrains Mono', 'Courier New', monospace;
       font-size: 16px;
       font-weight: 700;
+      color: #000;
     }
 
     .bill-payment-row {
@@ -1390,13 +1427,15 @@
     }
 
     .bill-footer-bar {
-      background: #1a1a1a;
-      color: rgba(255, 255, 255, .6);
+      background: #fff;
+      color: #000;
       text-align: center;
       padding: 7px 16px;
-      font-size: 8px;
+      font-size: 8.5px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
+      border-top: 1px solid #000;
+      font-weight: 600;
     }
 
     /* ── LOGIN ─────────────────────────────────────────────────── */
