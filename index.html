@@ -965,8 +965,8 @@
 
     @media print {
       * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
+        -webkit-print-color-adjust: economy !important;
+        print-color-adjust: economy !important;
       }
 
       body>* {
@@ -975,6 +975,42 @@
 
       #print-area {
         display: block !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .print-bill {
+        border: none !important;
+        border-radius: 0 !important;
+        max-width: 320px !important;
+        width: 320px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+      }
+
+      .print-bill .bill-header-block,
+      .print-bill .bill-items-bar,
+      .print-bill .bill-grand-total,
+      .print-bill .bill-footer-bar {
+        background: #1a1a1a !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .print-bill .bill-inv-badge {
+        background: #1a1a1a !important;
+        color: #fff !important;
+      }
+
+      @page {
+        margin: 10mm;
+        size: auto;
       }
     }
 
@@ -1086,271 +1122,279 @@
       font-size: 13px;
     }
 
-    /* ── ═══ PROFESSIONAL PRINT BILL ═══ ───────────────────────── */
+    /* ── ═══ THERMAL RECEIPT PRINT BILL ═══ ─────────────────────── */
     .print-bill {
-      font-family: 'Segoe UI', 'Arial', sans-serif;
-      max-width: 420px;
+      font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+      max-width: 320px;
+      width: 320px;
       margin: 0 auto;
       background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 4px;
+      color: #000;
+      line-height: 1.35;
       overflow: hidden;
     }
 
-    .bill-header {
-      background: #0f1628;
+    .bill-header-block {
+      background: #1a1a1a;
       color: #fff;
-      padding: 24px 28px;
       text-align: center;
-      position: relative;
+      padding: 22px 16px 18px;
     }
 
-    .bill-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: repeating-linear-gradient(45deg, transparent, transparent 8px,
-          rgba(201, 150, 58, .04) 8px, rgba(201, 150, 58, .04) 9px);
-    }
-
-    .bill-header-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .bill-brand {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: #c9963a;
+    .bill-brand-line1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #fff;
       text-transform: uppercase;
-      font-family: 'Georgia', serif;
+    }
+
+    .bill-brand-line2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: #fff;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-top: 2px;
     }
 
     .bill-tagline {
-      font-size: 11px;
-      color: rgba(255, 255, 255, .55);
-      margin-top: 4px;
-      letter-spacing: 2px;
+      font-size: 8.5px;
+      color: rgba(255, 255, 255, .75);
+      margin-top: 10px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
+      font-weight: 600;
     }
 
     .bill-address {
-      font-size: 11px;
-      color: rgba(255, 255, 255, .4);
+      font-size: 8.5px;
+      color: rgba(255, 255, 255, .55);
       margin-top: 8px;
-      line-height: 1.7;
+      line-height: 1.55;
     }
 
-    .bill-divider-gold {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #c9963a, #e6b55a, #c9963a, transparent);
-      margin: 4px 0;
-    }
-
-    .bill-meta {
-      padding: 16px 24px;
-      background: #fdf8f0;
+    .bill-meta-row {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 14px 16px;
+      background: #fff;
+      color: #000;
     }
 
-    .bill-meta-block {
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .bill-meta-block .meta-label {
-      font-size: 10px;
+    .bill-meta-col .meta-label {
+      font-size: 9px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #9ca3af;
+      letter-spacing: 1.2px;
       font-weight: 700;
-    }
-
-    .bill-meta-block .meta-val {
-      font-weight: 700;
-      color: #0f1628;
-      font-size: 13px;
-    }
-
-    .bill-meta-block .meta-sub {
-      color: #6b7280;
-      font-size: 11px;
+      color: #888;
+      margin-bottom: 4px;
     }
 
     .bill-inv-badge {
       display: inline-block;
-      padding: 4px 14px;
-      background: #0f1628;
-      color: #c9963a;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 700;
-      font-family: 'Courier New', monospace;
-      letter-spacing: 1px;
-    }
-
-    .bill-items-header {
-      display: grid;
-      grid-template-columns: 3fr 50px 80px 85px;
-      padding: 8px 24px;
-      background: #0f1628;
-      font-size: 10px;
-      font-weight: 700;
-      color: #c9963a;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .bill-items-header span:not(:first-child) {
-      text-align: right;
-    }
-
-    .bill-item {
-      display: grid;
-      grid-template-columns: 3fr 50px 80px 85px;
-      padding: 9px 24px;
-      border-bottom: 1px dashed #f0f0f0;
-      font-size: 12px;
-      align-items: center;
-    }
-
-    .bill-item:nth-child(even) {
-      background: #fafafa;
-    }
-
-    .bill-item .item-name {
-      font-weight: 600;
-      color: #1a1a2e;
-    }
-
-    .bill-item .item-cat {
-      font-size: 10px;
-      color: #9ca3af;
-      margin-top: 1px;
-    }
-
-    .bill-item span:not(:first-child) {
-      text-align: right;
-      font-family: 'Courier New', monospace;
-    }
-
-    .bill-item .item-total {
-      font-weight: 700;
-      color: #0f1628;
-    }
-
-    .bill-totals {
-      padding: 14px 24px;
-      background: #fff;
-    }
-
-    .bill-total-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 4px 0;
-      font-size: 12px;
-      color: #6b7280;
-    }
-
-    .bill-total-row.grand-row {
-      background: #0f1628;
-      color: #e6b55a;
-      margin: 10px -24px;
-      padding: 13px 24px;
-      font-size: 16px;
-      font-weight: 900;
-      letter-spacing: .5px;
-      font-family: 'Georgia', serif;
-    }
-
-    .bill-total-row.discount-row {
-      color: #dc2626;
-    }
-
-    .bill-payment-section {
-      padding: 12px 24px;
-      border-top: 1px solid #f0f0f0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #f9fafb;
-    }
-
-    .bill-payment-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .bill-payment-badge.cash {
-      background: #fef3c7;
-      color: #b45309;
-    }
-
-    .bill-payment-badge.gpay {
-      background: #dcfce7;
-      color: #15803d;
-    }
-
-    .bill-notes {
-      padding: 10px 24px;
-      background: #fffbeb;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
       font-size: 11px;
-      color: #78716c;
-      border-top: 1px solid #fde68a;
-    }
-
-    .bill-footer {
-      padding: 18px 24px;
-      text-align: center;
-      background: #fdf8f0;
-      border-top: 1px solid #f0e8d0;
-    }
-
-    .bill-footer .thank-you {
-      font-family: 'Georgia', serif;
-      font-size: 15px;
-      color: #0f1628;
       font-weight: 700;
+      letter-spacing: .5px;
+      padding: 4px 10px;
       margin-bottom: 4px;
     }
 
-    .bill-footer .footer-sub {
+    .bill-meta-col .meta-date {
+      font-size: 11px;
+      color: #555;
+    }
+
+    .bill-meta-col .meta-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: #000;
+      text-transform: uppercase;
+    }
+
+    .bill-meta-col .meta-phone {
+      font-size: 11px;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    .bill-meta-col.right {
+      text-align: right;
+    }
+
+    .bill-items-bar {
+      display: grid;
+      grid-template-columns: 1fr 36px 62px 72px;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 7px 16px;
+      font-size: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .bill-items-bar span:nth-child(2),
+    .bill-items-bar span:nth-child(3),
+    .bill-items-bar span:nth-child(4) {
+      text-align: right;
+    }
+
+    .bill-item-row {
+      display: grid;
+      grid-template-columns: 1fr 36px 62px 72px;
+      padding: 9px 16px;
+      font-size: 11px;
+      color: #000;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      align-items: center;
+    }
+
+    .bill-item-row .item-name {
+      font-weight: 600;
+      color: #000;
+      padding-right: 6px;
+    }
+
+    .bill-item-row span:nth-child(2),
+    .bill-item-row span:nth-child(3),
+    .bill-item-row span:nth-child(4) {
+      text-align: right;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
       font-size: 10.5px;
-      color: #9ca3af;
+    }
+
+    .bill-item-row .item-amt {
+      font-weight: 700;
+    }
+
+    .bill-subtotal-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+      padding: 8px 16px 4px;
+      font-size: 11px;
+      color: #555;
+      background: #fff;
+    }
+
+    .bill-subtotal-row .sub-val {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-weight: 600;
+      color: #000;
+      min-width: 72px;
+      text-align: right;
+    }
+
+    .bill-total-row.discount-row,
+    .bill-total-row.received-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+      padding: 2px 16px;
+      font-size: 11px;
+      color: #555;
+      background: #fff;
+    }
+
+    .bill-total-row.discount-row span:last-child,
+    .bill-total-row.received-row span:last-child {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      min-width: 72px;
+      text-align: right;
+      color: #000;
+    }
+
+    .bill-grand-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 12px 16px;
+      margin-top: 4px;
+    }
+
+    .bill-grand-total .gt-label {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .bill-grand-total .gt-amount {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .bill-payment-row {
+      padding: 10px 16px;
+      font-size: 11px;
+      color: #000;
+      background: #fff;
+    }
+
+    .bill-payment-row .pay-label {
+      color: #888;
+      font-weight: 600;
+    }
+
+    .bill-payment-row .pay-val {
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .bill-notes {
+      padding: 0 16px 8px;
+      font-size: 10px;
+      color: #555;
+      background: #fff;
+      font-style: italic;
+    }
+
+    .bill-footer {
+      padding: 14px 16px 10px;
+      text-align: center;
+      background: #fff;
+    }
+
+    .bill-footer .thank-you {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15px;
+      color: #000;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .bill-footer .footer-sub {
+      font-size: 9px;
+      color: #666;
       line-height: 1.7;
     }
 
     .bill-footer .footer-contact {
-      font-size: 11px;
-      color: #6b7280;
-      margin-top: 6px;
-    }
-
-    .bill-qr-zone {
-      margin-top: 10px;
-      font-size: 10px;
-      color: #d1d5db;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .bill-footer-strip {
-      background: #0f1628;
-      padding: 6px 24px;
-      text-align: center;
       font-size: 9px;
-      color: rgba(201, 150, 58, .6);
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .bill-footer-bar {
+      background: #1a1a1a;
+      color: rgba(255, 255, 255, .6);
+      text-align: center;
+      padding: 7px 16px;
+      font-size: 8px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
@@ -3417,16 +3461,13 @@
 
     /* ── PROFESSIONAL PRINT BILL BUILDER ───────────────────── */
     function buildPrintHTML(inv) {
-      const itemsHTML = inv.items.map((it, idx) => `
-    <div class="bill-item">
-      <div>
-        <div class="item-name">${it.name}</div>
-      </div>
+      const itemsHTML = inv.items.map(it => `
+    <div class="bill-item-row">
+      <span class="item-name">${it.name}</span>
       <span>${it.qty}</span>
       <span>₹${it.price.toFixed(2)}</span>
-      <span class="item-total">₹${it.total.toFixed(2)}</span>
-    </div>
-  `).join('');
+      <span class="item-amt">₹${it.total.toFixed(2)}</span>
+    </div>`).join('');
 
       const discAmt = inv.subtotal * inv.discount / 100;
       const discRow = inv.discount ? `
@@ -3435,82 +3476,74 @@
       <span>-₹${discAmt.toFixed(2)}</span>
     </div>` : '';
 
-      const notesRow = inv.notes ? `<div class="bill-notes">📝 Note: ${inv.notes}</div>` : '';
+      const notesRow = inv.notes ? `<div class="bill-notes">Note: ${inv.notes}</div>` : '';
 
       const receivedRow = inv.received && inv.received > inv.total ? `
-    <div class="bill-total-row" style="color:#6b7280;">
+    <div class="bill-total-row received-row">
       <span>Amount Received</span><span>₹${inv.received.toFixed(2)}</span>
     </div>
-    <div class="bill-total-row" style="color:#15803d;font-weight:700;">
+    <div class="bill-total-row received-row" style="font-weight:800;">
       <span>Change Returned</span><span>₹${(inv.received - inv.total).toFixed(2)}</span>
     </div>` : '';
 
+      const payLabel = inv.payment === 'cash' ? 'Cash' : 'GPay';
+
       return `
   <div class="print-bill">
-    <!-- HEADER -->
-    <div class="bill-header">
-      <div class="bill-header-inner">
-        <div class="bill-brand">Abi Fashion</div>
-        <div class="bill-divider-gold" style="margin:10px auto;width:80px;"></div>
-        <div class="bill-tagline">Men's Wear · Premium Collection</div>
-        <div class="bill-address">
-          Madurai, Tamil Nadu<br>
-          📞 +91 98765 43210 &nbsp;|&nbsp; ✉ abifashion@gmail.com
-        </div>
+    <div class="bill-header-block">
+      <div class="bill-brand-line1">ABI</div>
+      <div class="bill-brand-line2">FASHION</div>
+      <div class="bill-tagline">Best Quality Men's Wear Collection</div>
+      <div class="bill-address">
+        NO:369/Abraham Pandithar Road,<br>
+        Near Ashoka Ladge Old Bus Stand,<br>
+        Thanjavur-613001
       </div>
     </div>
 
-    <!-- META -->
-    <div class="bill-meta">
-      <div class="bill-meta-block">
+    <div class="bill-meta-row">
+      <div class="bill-meta-col">
         <div class="meta-label">Invoice</div>
         <div class="bill-inv-badge">${inv.number}</div>
-        <div class="meta-sub" style="margin-top:4px;">${formatDate(inv.date)}</div>
+        <div class="meta-date">${formatDate(inv.date)}</div>
       </div>
-      <div class="bill-meta-block" style="text-align:right;">
+      <div class="bill-meta-col right">
         <div class="meta-label">Customer</div>
-        <div class="meta-val">${inv.customer}</div>
-        <div class="meta-sub">${inv.phone || '&nbsp;'}</div>
+        <div class="meta-name">${inv.customer}</div>
+        <div class="meta-phone">${inv.phone || ''}</div>
       </div>
     </div>
 
-    <!-- ITEMS HEADER -->
-    <div class="bill-items-header">
+    <div class="bill-items-bar">
       <span>Description</span>
-      <span style="text-align:right;">Qty</span>
-      <span style="text-align:right;">Rate</span>
-      <span style="text-align:right;">Amount</span>
+      <span>Qty</span>
+      <span>Rate</span>
+      <span>Amount</span>
     </div>
 
-    <!-- ITEMS -->
     ${itemsHTML}
 
-    <!-- TOTALS -->
-    <div class="bill-totals">
-      <div class="bill-total-row" style="border-top:1px solid #f0f0f0;padding-top:10px;">
-        <span>Subtotal</span><span style="font-family:'Courier New';">₹${inv.subtotal.toFixed(2)}</span>
-      </div>
-      ${discRow}
-      ${receivedRow}
-      <div class="bill-total-row grand-row">
-        <span>TOTAL AMOUNT</span>
-        <span>₹${inv.total.toFixed(2)}</span>
-      </div>
+    <div class="bill-subtotal-row">
+      <span>Subtotal</span>
+      <span class="sub-val">₹${inv.subtotal.toFixed(2)}</span>
+    </div>
+    ${discRow}
+    ${receivedRow}
+
+    <div class="bill-grand-total">
+      <span class="gt-label">Total Amount</span>
+      <span class="gt-amount">₹${inv.total.toFixed(2)}</span>
     </div>
 
-    <!-- PAYMENT -->
-    <div class="bill-payment-section">
-      <span style="font-size:11px;color:#9ca3af;font-weight:600;">Payment:</span>
-      <span class="bill-payment-badge ${inv.payment === 'cash' ? 'cash' : 'gpay'}">
-        ${inv.payment === 'cash' ? '💵 Cash' : '📱 GPay'}
-      </span>
+    <div class="bill-payment-row">
+      <span class="pay-label">Payment:</span>
+      <span class="pay-val">${payLabel}</span>
     </div>
 
     ${notesRow}
 
-    <!-- FOOTER -->
     <div class="bill-footer">
-      <div class="thank-you">Thank You for Shopping! 🙏</div>
+      <div class="thank-you">Thank You for Shopping!</div>
       <div class="footer-sub">
         We appreciate your business and trust.<br>
         Exchange within 7 days with original bill.
@@ -3518,9 +3551,8 @@
       <div class="footer-contact">
         Visit us again for the latest men's wear collection
       </div>
-      <div class="bill-qr-zone">· · · · · · · · · · · · · · · · · · · ·</div>
     </div>
-    <div class="bill-footer-strip">Abi Fashion · Madurai · Est. 2020</div>
+    <div class="bill-footer-bar">Abi Fashion · Thanjavur · abifashion.online</div>
   </div>`;
     }
 
