@@ -22,7 +22,7 @@
 body.role-admin{ --accent:#243447; --accent-light:#C9D3DC; }
 body.role-staff{ --accent:#B8541F; --accent-light:#F0D9BE; }
 body.role-bar  { --accent:#6B1E3C; --accent-light:#E7C7D4; }
- 
+
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
 html,body{margin:0;padding:0;}
 body{
@@ -38,7 +38,7 @@ body{
 h1,h2,h3{margin:0;}
 button{font-family:inherit; cursor:pointer;}
 input,select{font-family:inherit;}
- 
+
 /* ===== Top bar ===== */
 .topbar{
   position:sticky; top:0; z-index:20;
@@ -53,7 +53,7 @@ input,select{font-family:inherit;}
   background:rgba(255,255,255,0.16); color:#fff; border:none; border-radius:20px;
   padding:8px 14px; font-size:12px; font-weight:700;
 }
- 
+
 /* ===== Login ===== */
 .login-wrap{
   min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
@@ -91,12 +91,12 @@ input,select{font-family:inherit;}
 }
 .login-error{color:var(--bad); font-size:12.5px; text-align:center; margin-top:10px; min-height:16px;}
 .login-hint{margin-top:16px; font-size:11px; color:var(--ink-soft); text-align:center; line-height:1.5;}
- 
+
 /* ===== Layout ===== */
 .content{padding:14px 14px 24px;}
 .section-title{font-size:13px; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.6px; margin:18px 2px 10px;}
 .card{background:var(--paper); border-radius:var(--radius); border:1px solid var(--line); padding:14px; margin-bottom:12px;}
- 
+
 /* Tabs (bottom nav) */
 .tabbar{
   position:fixed; bottom:0; left:0; right:0; height:var(--tab-h); background:#fff; border-top:1px solid var(--line);
@@ -112,14 +112,14 @@ input,select{font-family:inherit;}
   position:absolute; top:6px; margin-left:14px; background:var(--bad); color:#fff; font-size:9px; font-weight:800;
   border-radius:10px; min-width:16px; height:16px; display:flex; align-items:center; justify-content:center; padding:0 4px;
 }
- 
+
 /* Stat cards */
 .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
 .stat-card{background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:14px;}
 .stat-card .label{font-size:11px; color:var(--ink-soft); font-weight:700; text-transform:uppercase; letter-spacing:0.3px;}
 .stat-card .value{font-size:24px; font-weight:800; margin-top:4px;}
 .stat-card .value.accent{color:var(--accent);}
- 
+
 /* Menu grid for ordering */
 .menu-cat{font-size:12px; font-weight:800; color:var(--accent); margin:16px 2px 8px; text-transform:uppercase; letter-spacing:0.5px;}
 .item-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
@@ -162,7 +162,7 @@ input,select{font-family:inherit;}
 .refresh-btn.spin{animation:spin .6s linear;}
 @keyframes spin{ to{ transform:rotate(360deg); } }
 .topbar-actions{display:flex; align-items:center;}
- 
+
 /* Floating cart bar */
 .cart-fab{
   position:fixed; left:14px; right:14px; bottom:calc(var(--tab-h) + 12px); z-index:25;
@@ -171,7 +171,7 @@ input,select{font-family:inherit;}
 }
 .cart-fab .l{font-size:13px; font-weight:700;}
 .cart-fab .r{font-size:14px; font-weight:800; display:flex; align-items:center; gap:8px;}
- 
+
 /* Modal / sheet */
 .overlay{position:fixed; inset:0; background:rgba(20,15,10,0.5); z-index:50; display:flex; align-items:flex-end; justify-content:center;}
 .sheet{
@@ -190,7 +190,7 @@ input,select{font-family:inherit;}
 .type-toggle button.active{border-color:var(--accent); color:var(--accent); background:var(--accent-light);}
 .total-row{display:flex; justify-content:space-between; align-items:center; padding-top:12px; margin-top:8px; border-top:2px solid var(--ink); font-size:16px; font-weight:800;}
 .close-x{position:absolute; top:16px; right:16px; background:var(--line); border:none; width:30px; height:30px; border-radius:50%; font-size:15px; color:var(--ink-soft);}
- 
+
 /* Buttons */
 .btn{padding:12px 16px; border-radius:10px; border:1.5px solid var(--line); background:#fff; font-weight:700; font-size:13px; color:var(--ink);}
 .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff;}
@@ -201,7 +201,7 @@ input,select{font-family:inherit;}
 .row{display:flex; gap:8px;}
 .row.between{justify-content:space-between; align-items:center;}
 .row.wrap{flex-wrap:wrap;}
- 
+
 /* Order list rows */
 .order-row{background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px; margin-bottom:9px;}
 .order-row .head{display:flex; justify-content:space-between; align-items:flex-start;}
@@ -215,19 +215,19 @@ input,select{font-family:inherit;}
 .tag.printed{background:#E7ECEF; color:var(--ink-soft);}
 .order-row .items-mini{font-size:12px; color:var(--ink-soft); margin-top:6px; line-height:1.5;}
 .order-row .actions{display:flex; gap:8px; margin-top:10px;}
- 
+
 /* Empty state */
 .empty{text-align:center; padding:40px 16px; color:var(--ink-soft);}
 .empty .big{font-size:34px; margin-bottom:10px;}
 .empty p{font-size:13px; line-height:1.5;}
- 
+
 /* Menu editor */
 .menu-edit-row{display:flex; align-items:center; gap:8px; padding:10px 0; border-bottom:1px solid var(--line);}
 .menu-edit-row input[type=text]{flex:2; padding:9px 10px; border:1.5px solid var(--line); border-radius:8px; font-size:13px;}
 .menu-edit-row input[type=number]{flex:1; padding:9px 10px; border:1.5px solid var(--line); border-radius:8px; font-size:13px; width:70px;}
 .small-x{background:none; border:none; color:var(--bad); font-size:18px; font-weight:800; padding:4px 8px;}
 .free-check{display:flex; align-items:center; gap:4px; font-size:10.5px; color:var(--ink-soft); font-weight:700;}
- 
+
 /* Toast */
 #toast{
   position:fixed; top:16px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff;
@@ -235,7 +235,7 @@ input,select{font-family:inherit;}
   transition:opacity .25s, top .25s; box-shadow:0 6px 16px rgba(0,0,0,0.3); max-width:88%; text-align:center;
 }
 #toast.show{opacity:1; top:64px;}
- 
+
 /* Print receipt (hidden until printing) */
 #printArea{display:none;}
 @media print{
@@ -256,7 +256,7 @@ input,select{font-family:inherit;}
 .rcpt-items td.amt,.rcpt-items th.amt{text-align:right; width:50px;}
 .rcpt-total{display:flex; justify-content:space-between; font-size:14px; font-weight:800; margin-top:8px; border-top:1px dashed #000; padding-top:6px;}
 .rcpt-foot{text-align:center; font-size:11px; margin-top:10px;}
- 
+
 .settings-box{font-size:12.5px; line-height:1.7; color:var(--ink-soft);}
 .settings-box b{color:var(--ink);}
 .link-btn{background:none;border:none;color:var(--accent);font-weight:700;font-size:12.5px;padding:0;}
@@ -266,13 +266,13 @@ input,select{font-family:inherit;}
 <div id="app"></div>
 <div id="toast"></div>
 <div id="printArea"></div>
- 
+
 <script>
 /* ============ CONSTANTS ============ */
 const HOTEL_NAME = "Hotel Pandiyar Residency";
 const HOTEL_SUB  = "Unlimited Parotta | Thanjavur";
 const HOTEL_ADDR = "Pandiyar Residency, 14, Rani Paradise Theater Complex, Membalam Rd, Thanjavur, Tamil Nadu, India, 613007";
- 
+
 const DEFAULT_PAROTTA_MENU = [
   {id:"p1", name:"Unlimited Parotta", price:99, cat:"Parotta", free:false, avail:true},
   {id:"p2", name:"Nool Parotta", price:30, cat:"Parotta", free:false, avail:true},
@@ -336,7 +336,7 @@ const DEFAULT_USERS = [
   {username:"staff", password:"staff123", role:"staff", label:"Unlimited Staff"},
   {username:"bar",   password:"bar123",   role:"bar",   label:"Rhythm Bar"},
 ];
- 
+
 /* ============ STATE ============ */
 let S = {
   user:null,
@@ -354,12 +354,12 @@ let S = {
   loginErr:"",
   pollTimer:null,
 };
- 
+
 function todayStr(d){ d=d||new Date(); return d.toISOString().slice(0,10); }
 function timeStr(d){ d=d||new Date(); return d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}); }
 function fmt(n){ return "₹"+Number(n).toFixed(0); }
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
- 
+
 /* ============ STORAGE HELPERS ============ */
 async function storeGet(key){
   try{ const r = await window.storage.get(key, true); return r ? JSON.parse(r.value) : null; }
@@ -369,7 +369,7 @@ async function storeSet(key, val){
   try{ await window.storage.set(key, JSON.stringify(val), true); return true; }
   catch(e){ console.error("storage set failed", key, e); return false; }
 }
- 
+
 async function ensureSeed(){
   let users = await storeGet('users');
   if(!users){ users = DEFAULT_USERS; await storeSet('users', users); }
@@ -379,7 +379,7 @@ async function ensureSeed(){
   if(bar===null || bar.length===0){ bar = DEFAULT_BAR_MENU; await storeSet('menu:bar', bar); }
   S.users = users; S.menu.parotta = parotta; S.menu.bar = bar;
 }
- 
+
 async function refreshMenus(){
   const p = await storeGet('menu:parotta'); if(p) S.menu.parotta = p;
   const b = await storeGet('menu:bar'); if(b!==null) S.menu.bar = b;
@@ -407,7 +407,7 @@ async function patchOrder(dateStr, orderId, patch){
   if(idx>-1){ arr[idx] = Object.assign({}, arr[idx], patch); await saveOrdersForDate(dateStr, arr); }
   return arr;
 }
- 
+
 /* ============ TOAST ============ */
 let toastTimer=null;
 function toast(msg){
@@ -417,7 +417,7 @@ function toast(msg){
   clearTimeout(toastTimer);
   toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
 }
- 
+
 /* ============ RENDER ROOT ============ */
 function render(){
   const app = document.getElementById('app');
@@ -435,7 +435,7 @@ function render(){
   attachGlobalEvents();
   if(S.sheet) renderSheetInto();
 }
- 
+
 function renderTopbar(){
   const u = S.user;
   return `<div class="topbar">
@@ -460,7 +460,7 @@ async function manualRefresh(){
   render();
   toast("Refreshed");
 }
- 
+
 /* ============ LOGIN ============ */
 function renderLogin(){
   const roles = [{k:'admin',l:'Admin'},{k:'staff',l:'Unlimited Staff'},{k:'bar',l:'Rhythm Bar'}];
@@ -510,7 +510,7 @@ async function afterLogin(){
   S.ordersToday = await getOrdersForDate(d);
   if(S.user.role==='admin') S.adminAllOrders = S.ordersToday;
 }
- 
+
 function startPolling(){
   stopPolling();
   S.pollTimer = setInterval(async ()=>{
@@ -524,11 +524,13 @@ function startPolling(){
     if((S.user.role==='staff'||S.user.role==='admin') && newPending > prevPending){
       toast("🔔 New order from Rhythm Bar — print on ground floor");
     }
-    render();
+    // Don't force a full redraw while a cart sheet is open (typing table no. etc.) —
+    // state is already updated above, so the badge/queue will reflect it the moment the sheet closes.
+    if(!S.sheet || S.sheet.type!=='cart'){ render(); }
   }, 5000);
 }
 function stopPolling(){ if(S.pollTimer){ clearInterval(S.pollTimer); S.pollTimer=null; } }
- 
+
 /* ============ TABBAR ============ */
 function renderTabbar(){
   let tabs=[];
@@ -560,7 +562,7 @@ function renderTabbar(){
       ${t.badge?`<span class="badge">${t.badge}</span>`:''}
     </button>`).join('')}</div>`;
 }
- 
+
 /* ============ ADMIN VIEWS ============ */
 function renderAdmin(){
   if(S.tab==='overview') return renderAdminOverview();
@@ -652,7 +654,7 @@ async function deleteOrder(date, id){
   await afterLogin();
   render();
 }
- 
+
 function renderAdminMenu(){
   return `<div class="content">
     <div class="section-title">Unlimited Parotta Menu</div>
@@ -702,7 +704,7 @@ async function addMenuItemPrompt(kind){
   toast("Item added");
   render();
 }
- 
+
 function renderAdminStaff(){
   return `<div class="content">
     <div class="section-title">Staff & Logins</div>
@@ -751,7 +753,7 @@ async function deleteUser(username){
   await storeSet('users', S.users);
   render();
 }
- 
+
 function renderAdminSettings(){
   return `<div class="content">
     <div class="section-title">Printer Setup</div>
@@ -769,7 +771,7 @@ function renderAdminSettings(){
     </div>
   </div>`;
 }
- 
+
 /* ============ STAFF (Ground Floor) VIEWS ============ */
 function renderStaff(){
   if(S.tab==='order') return renderOrderScreen('parotta','ground');
@@ -789,7 +791,7 @@ function renderPrintQueue(){
       done.slice().reverse().map(o=>renderOrderRow(o,false)).join('')}
   </div>`;
 }
- 
+
 /* ============ BAR VIEWS ============ */
 function renderBar(){
   if(S.tab==='order') return renderOrderScreen('bar','bar');
@@ -804,7 +806,7 @@ function renderBarMenuManage(){
     <button class="btn block primary" onclick="addMenuItemPrompt('bar')">+ Add Bar Item</button>
   </div>`;
 }
- 
+
 /* ============ ORDER SCREEN (shared by staff & bar) ============ */
 function renderOrderScreen(menuKind, source){
   const fullList = S.menu[menuKind];
@@ -876,7 +878,7 @@ function openCartSheet(menuKind, source){
   S.sheet = {type:'cart', menuKind, source};
   render();
 }
- 
+
 /* ============ SHEET RENDER ============ */
 function renderSheetInto(){
   const app = document.getElementById('app');
@@ -942,7 +944,7 @@ function closeSheet(doRender){
   S.sheet = null;
   if(doRender!==false) render();
 }
- 
+
 async function placeOrder(menuKind, source){
   const list = S.menu[menuKind];
   const lines = Object.entries(S.cart).map(([id,qty])=>{
@@ -980,7 +982,7 @@ async function placeOrder(menuKind, source){
     setTimeout(()=>doPrint(order), 150);
   }
 }
- 
+
 async function openReceipt(date, orderId){
   const arr = await getOrdersForDate(date);
   const o = arr.find(x=>x.id===orderId);
@@ -1020,7 +1022,7 @@ async function markPrinted(date, id){
   toast("Marked as printed");
   render();
 }
- 
+
 /* ============ PRINT ============ */
 function doPrint(o){
   const src = o.source==='bar' ? `<div class="rcpt-center" style="font-weight:800;margin-top:4px;">** RHYTHM BAR — 1ST FLOOR **</div>` : '';
@@ -1051,7 +1053,7 @@ function doPrint(o){
   document.getElementById('printArea').innerHTML = html;
   window.print();
 }
- 
+
 /* ============ HISTORY ============ */
 function renderHistory(source){
   const mine = S.ordersToday.filter(o=>o.source===source && (S.user.role==='admin' || o.staff===S.user.username || S.user.role!=='bar' || o.source==='bar'));
@@ -1062,14 +1064,14 @@ function renderHistory(source){
       list.slice().reverse().map(o=>renderOrderRow(o,false)).join('')}
   </div>`;
 }
- 
+
 /* ============ GLOBAL EVENTS ============ */
 function attachGlobalEvents(){
   document.querySelectorAll('.tabbar button').forEach(b=>{
     b.onclick = ()=>{ S.tab = b.dataset.tab; S.cart={}; S.sheet=null; render(); };
   });
 }
- 
+
 /* ============ INIT ============ */
 (async function init(){
   await ensureSeed();
@@ -1078,4 +1080,3 @@ function attachGlobalEvents(){
 </script>
 </body>
 </html>
- 
