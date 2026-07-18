@@ -143,6 +143,25 @@ input,select{font-family:inherit;}
   width:22px;height:22px; font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center;
   box-shadow:0 2px 4px rgba(0,0,0,0.2);
 }
+.stock-toggle{
+  position:absolute; top:6px; right:6px; width:22px; height:22px; border-radius:50%; border:none;
+  background:var(--line); color:var(--ink-soft); font-size:11px; display:flex; align-items:center; justify-content:center;
+}
+.stock-toggle:active{background:var(--bad); color:#fff;}
+.oos-section{margin-top:20px;}
+.oos-chip{
+  display:flex; align-items:center; justify-content:space-between; background:#F3EFE8; border:1px dashed var(--line);
+  border-radius:10px; padding:9px 12px; margin-bottom:8px;
+}
+.oos-chip .nm{font-size:12.5px; font-weight:700; color:var(--ink-soft); text-decoration:line-through;}
+.oos-chip button{background:var(--good); border:none; color:#fff; font-size:11px; font-weight:800; padding:6px 10px; border-radius:8px;}
+.refresh-btn{
+  background:rgba(255,255,255,0.16); border:none; color:#fff; width:34px; height:34px; border-radius:50%;
+  font-size:15px; display:flex; align-items:center; justify-content:center; margin-right:8px;
+}
+.refresh-btn.spin{animation:spin .6s linear;}
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.topbar-actions{display:flex; align-items:center;}
 
 /* Floating cart bar */
 .cart-fab{
@@ -255,62 +274,62 @@ const HOTEL_SUB  = "Unlimited Parotta | Thanjavur";
 const HOTEL_ADDR = "Pandiyar Residency, 14, Rani Paradise Theater Complex, Membalam Rd, Thanjavur, Tamil Nadu, India, 613007";
 
 const DEFAULT_PAROTTA_MENU = [
-  {id:"p1", name:"Unlimited Parotta", price:99, cat:"Parotta", free:false},
-  {id:"p2", name:"Nool Parotta", price:30, cat:"Parotta", free:false},
-  {id:"p3", name:"Bun Parotta", price:30, cat:"Parotta", free:false},
-  {id:"p4", name:"Poricha Parotta", price:30, cat:"Parotta", free:false},
-  {id:"p5", name:"Coin Parotta (4 pcs)", price:50, cat:"Parotta", free:false},
-  {id:"p6", name:"Plain Parotta", price:20, cat:"Parotta", free:false},
-  {id:"p7", name:"Veg Kuruma", price:0, cat:"Kuruma (Free)", free:true},
-  {id:"p8", name:"Chicken Kuruma", price:0, cat:"Kuruma (Free)", free:true},
-  {id:"p9", name:"Mutton Kuruma", price:0, cat:"Kuruma (Free)", free:true},
-  {id:"p10", name:"Omelette", price:30, cat:"Egg & Sides", free:false},
-  {id:"p11", name:"Kuruma Kalaki", price:25, cat:"Egg & Sides", free:false},
-  {id:"p12", name:"Normal Kalaki", price:20, cat:"Egg & Sides", free:false},
-  {id:"p13", name:"Full Boil", price:20, cat:"Egg & Sides", free:false},
-  {id:"p14", name:"Half Boil", price:20, cat:"Egg & Sides", free:false},
+  {id:"p1", name:"Unlimited Parotta", price:99, cat:"Parotta", free:false, avail:true},
+  {id:"p2", name:"Nool Parotta", price:30, cat:"Parotta", free:false, avail:true},
+  {id:"p3", name:"Bun Parotta", price:30, cat:"Parotta", free:false, avail:true},
+  {id:"p4", name:"Poricha Parotta", price:30, cat:"Parotta", free:false, avail:true},
+  {id:"p5", name:"Coin Parotta (4 pcs)", price:50, cat:"Parotta", free:false, avail:true},
+  {id:"p6", name:"Plain Parotta", price:20, cat:"Parotta", free:false, avail:true},
+  {id:"p7", name:"Veg Kuruma", price:0, cat:"Kuruma (Free)", free:true, avail:true},
+  {id:"p8", name:"Chicken Kuruma", price:0, cat:"Kuruma (Free)", free:true, avail:true},
+  {id:"p9", name:"Mutton Kuruma", price:0, cat:"Kuruma (Free)", free:true, avail:true},
+  {id:"p10", name:"Omelette", price:30, cat:"Egg & Sides", free:false, avail:true},
+  {id:"p11", name:"Kuruma Kalaki", price:25, cat:"Egg & Sides", free:false, avail:true},
+  {id:"p12", name:"Normal Kalaki", price:20, cat:"Egg & Sides", free:false, avail:true},
+  {id:"p13", name:"Full Boil", price:20, cat:"Egg & Sides", free:false, avail:true},
+  {id:"p14", name:"Half Boil", price:20, cat:"Egg & Sides", free:false, avail:true},
 ];
 const DEFAULT_BAR_MENU = [
   // Sea Food Starters
-  {id:"b1", name:"Fish 65", price:119, cat:"Sea Food Starters", free:false},
-  {id:"b2", name:"Fish Finger", price:129, cat:"Sea Food Starters", free:false},
-  {id:"b3", name:"Prawn Golden Fry", price:139, cat:"Sea Food Starters", free:false},
-  {id:"b4", name:"Crispy Prawn", price:140, cat:"Sea Food Starters", free:false},
-  {id:"b5", name:"Prawn Salt & Pepper", price:149, cat:"Sea Food Starters", free:false},
-  {id:"b6", name:"Crab Lollipop", price:149, cat:"Sea Food Starters", free:false},
-  {id:"b7", name:"Squid Fry", price:139, cat:"Sea Food Starters", free:false},
-  {id:"b8", name:"Squid Varuval", price:149, cat:"Sea Food Starters", free:false},
+  {id:"b1", name:"Fish 65", price:119, cat:"Sea Food Starters", free:false, avail:true},
+  {id:"b2", name:"Fish Finger", price:129, cat:"Sea Food Starters", free:false, avail:true},
+  {id:"b3", name:"Prawn Golden Fry", price:139, cat:"Sea Food Starters", free:false, avail:true},
+  {id:"b4", name:"Crispy Prawn", price:140, cat:"Sea Food Starters", free:false, avail:true},
+  {id:"b5", name:"Prawn Salt & Pepper", price:149, cat:"Sea Food Starters", free:false, avail:true},
+  {id:"b6", name:"Crab Lollipop", price:149, cat:"Sea Food Starters", free:false, avail:true},
+  {id:"b7", name:"Squid Fry", price:139, cat:"Sea Food Starters", free:false, avail:true},
+  {id:"b8", name:"Squid Varuval", price:149, cat:"Sea Food Starters", free:false, avail:true},
   // Chicken Starters
-  {id:"b9", name:"Crispy Fried Chicken", price:109, cat:"Chicken Starters", free:false},
-  {id:"b10", name:"Chilli Chicken", price:99, cat:"Chicken Starters", free:false},
-  {id:"b11", name:"Garlic Chicken", price:119, cat:"Chicken Starters", free:false},
-  {id:"b12", name:"Ginger Chicken", price:129, cat:"Chicken Starters", free:false},
-  {id:"b13", name:"Honey Chicken", price:129, cat:"Chicken Starters", free:false},
-  {id:"b14", name:"Chicken Lollipop", price:109, cat:"Chicken Starters", free:false},
-  {id:"b15", name:"Chicken 65", price:99, cat:"Chicken Starters", free:false},
-  {id:"b16", name:"Saute Chicken", price:109, cat:"Chicken Starters", free:false},
-  {id:"b17", name:"Chicken Nuggets", price:99, cat:"Chicken Starters", free:false},
-  {id:"b18", name:"Kaadai Fry", price:129, cat:"Chicken Starters", free:false},
-  {id:"b19", name:"Pepper Kaadai", price:139, cat:"Chicken Starters", free:false},
+  {id:"b9", name:"Crispy Fried Chicken", price:109, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b10", name:"Chilli Chicken", price:99, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b11", name:"Garlic Chicken", price:119, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b12", name:"Ginger Chicken", price:129, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b13", name:"Honey Chicken", price:129, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b14", name:"Chicken Lollipop", price:109, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b15", name:"Chicken 65", price:99, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b16", name:"Saute Chicken", price:109, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b17", name:"Chicken Nuggets", price:99, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b18", name:"Kaadai Fry", price:129, cat:"Chicken Starters", free:false, avail:true},
+  {id:"b19", name:"Pepper Kaadai", price:139, cat:"Chicken Starters", free:false, avail:true},
   // Egg Starters
-  {id:"b20", name:"Omelette", price:59, cat:"Egg Starters", free:false},
-  {id:"b21", name:"Full Boil", price:49, cat:"Egg Starters", free:false},
-  {id:"b22", name:"Kalakki", price:59, cat:"Egg Starters", free:false},
-  {id:"b23", name:"Gurumaa Kalakki", price:79, cat:"Egg Starters", free:false},
-  {id:"b24", name:"Chicken Kalakki", price:99, cat:"Egg Starters", free:false},
-  {id:"b25", name:"Chilli Egg", price:129, cat:"Egg Starters", free:false},
-  {id:"b26", name:"Karandi Omlette", price:60, cat:"Egg Starters", free:false},
+  {id:"b20", name:"Omelette", price:59, cat:"Egg Starters", free:false, avail:true},
+  {id:"b21", name:"Full Boil", price:49, cat:"Egg Starters", free:false, avail:true},
+  {id:"b22", name:"Kalakki", price:59, cat:"Egg Starters", free:false, avail:true},
+  {id:"b23", name:"Gurumaa Kalakki", price:79, cat:"Egg Starters", free:false, avail:true},
+  {id:"b24", name:"Chicken Kalakki", price:99, cat:"Egg Starters", free:false, avail:true},
+  {id:"b25", name:"Chilli Egg", price:129, cat:"Egg Starters", free:false, avail:true},
+  {id:"b26", name:"Karandi Omlette", price:60, cat:"Egg Starters", free:false, avail:true},
   // Veg Starters
-  {id:"b27", name:"Babycorn Salt & Pepper", price:89, cat:"Veg Starters", free:false},
-  {id:"b28", name:"Chilli Babycorn", price:89, cat:"Veg Starters", free:false},
-  {id:"b29", name:"65 Mushroom", price:79, cat:"Veg Starters", free:false},
-  {id:"b30", name:"Salt & Pepper Mushroom", price:89, cat:"Veg Starters", free:false},
-  {id:"b31", name:"Gobi 65", price:69, cat:"Veg Starters", free:false},
-  {id:"b32", name:"Gobi Manchurian", price:79, cat:"Veg Starters", free:false},
-  {id:"b33", name:"Masala Pappad", price:49, cat:"Veg Starters", free:false},
-  {id:"b34", name:"Peanut Pappad", price:69, cat:"Veg Starters", free:false},
-  {id:"b35", name:"Crispy Corn", price:79, cat:"Veg Starters", free:false},
-  {id:"b36", name:"French Fries", price:59, cat:"Veg Starters", free:false},
+  {id:"b27", name:"Babycorn Salt & Pepper", price:89, cat:"Veg Starters", free:false, avail:true},
+  {id:"b28", name:"Chilli Babycorn", price:89, cat:"Veg Starters", free:false, avail:true},
+  {id:"b29", name:"65 Mushroom", price:79, cat:"Veg Starters", free:false, avail:true},
+  {id:"b30", name:"Salt & Pepper Mushroom", price:89, cat:"Veg Starters", free:false, avail:true},
+  {id:"b31", name:"Gobi 65", price:69, cat:"Veg Starters", free:false, avail:true},
+  {id:"b32", name:"Gobi Manchurian", price:79, cat:"Veg Starters", free:false, avail:true},
+  {id:"b33", name:"Masala Pappad", price:49, cat:"Veg Starters", free:false, avail:true},
+  {id:"b34", name:"Peanut Pappad", price:69, cat:"Veg Starters", free:false, avail:true},
+  {id:"b35", name:"Crispy Corn", price:79, cat:"Veg Starters", free:false, avail:true},
+  {id:"b36", name:"French Fries", price:59, cat:"Veg Starters", free:false, avail:true},
 ];
 const DEFAULT_USERS = [
   {username:"admin", password:"admin123", role:"admin", label:"Admin"},
@@ -424,8 +443,22 @@ function renderTopbar(){
       <div class="shop">${HOTEL_NAME}</div>
       <div class="who">${u.label} · ${u.username}</div>
     </div>
-    <button class="logout" onclick="logout()">Logout</button>
+    <div class="topbar-actions">
+      <button class="refresh-btn" id="refreshBtn" onclick="manualRefresh()" title="Refresh">⟳</button>
+      <button class="logout" onclick="logout()">Logout</button>
+    </div>
   </div>`;
+}
+async function manualRefresh(){
+  const btn = document.getElementById('refreshBtn');
+  if(btn) btn.classList.add('spin');
+  await refreshMenus();
+  await refreshUsers();
+  const d = todayStr();
+  S.ordersToday = await getOrdersForDate(d);
+  if(S.user.role==='admin'){ S.adminAllOrders = await getOrdersForDate(S.adminOrdersDate||d); }
+  render();
+  toast("Refreshed");
 }
 
 /* ============ LOGIN ============ */
@@ -638,6 +671,7 @@ function renderMenuEditor(kind){
       <input type="text" value="${it.name}" onchange="editMenuField('${kind}','${it.id}','name',this.value)">
       <input type="number" value="${it.price}" onchange="editMenuField('${kind}','${it.id}','price',this.value)">
       <label class="free-check"><input type="checkbox" ${it.free?'checked':''} onchange="editMenuField('${kind}','${it.id}','free',this.checked)">Free</label>
+      <label class="free-check"><input type="checkbox" ${it.avail!==false?'checked':''} onchange="editMenuField('${kind}','${it.id}','avail',this.checked)">In Stock</label>
       <button class="small-x" onclick="deleteMenuItem('${kind}','${it.id}')">✕</button>
     </div>`).join('');
 }
@@ -662,7 +696,7 @@ async function addMenuItemPrompt(kind){
   const priceStr = prompt("Price (₹, enter 0 if free):", "0");
   if(priceStr===null) return;
   const price = Math.max(0, Number(priceStr)||0);
-  const item = {id:'m'+uid(), name:name.trim(), price, cat: kind==='bar'?'Bar':'Other', free: price===0};
+  const item = {id:'m'+uid(), name:name.trim(), price, cat: kind==='bar'?'Bar':'Other', free: price===0, avail:true};
   S.menu[kind].push(item);
   await storeSet('menu:'+kind, S.menu[kind]);
   toast("Item added");
@@ -773,10 +807,12 @@ function renderBarMenuManage(){
 
 /* ============ ORDER SCREEN (shared by staff & bar) ============ */
 function renderOrderScreen(menuKind, source){
-  const list = S.menu[menuKind];
-  if(!list.length){
+  const fullList = S.menu[menuKind];
+  if(!fullList.length){
     return `<div class="content"><div class="empty"><div class="big">📋</div><p>No menu items yet.${source==='bar'?' Go to the Bar Menu tab to add items.':''}</p></div></div>`;
   }
+  const list = fullList.filter(i=>i.avail!==false);
+  const oosList = fullList.filter(i=>i.avail===false);
   const cats = [...new Set(list.map(i=>i.cat))];
   let cartCount=0, cartTotal=0;
   Object.entries(S.cart).forEach(([id,qty])=>{
@@ -784,11 +820,15 @@ function renderOrderScreen(menuKind, source){
     if(it){ cartCount+=qty; cartTotal += it.price*qty; }
   });
   let html = `<div class="content" style="padding-bottom:90px;">`;
+  if(!list.length){
+    html += `<div class="empty"><div class="big">🚫</div><p>Everything is marked out of stock right now.</p></div>`;
+  }
   cats.forEach(cat=>{
     html += `<div class="menu-cat">${cat}</div><div class="item-grid">`;
     list.filter(i=>i.cat===cat).forEach(it=>{
       const q = S.cart[it.id]||0;
       html += `<div class="item-card ${it.free?'free':''}">
+        <button class="stock-toggle" title="Mark out of stock" onclick="toggleAvail('${menuKind}','${it.id}',false)">🚫</button>
         ${q>0?`<div class="count-badge">${q}</div>`:''}
         <div class="name">${it.name}</div>
         <div class="price">${it.free?'FREE':fmt(it.price)}</div>
@@ -801,6 +841,13 @@ function renderOrderScreen(menuKind, source){
     });
     html += `</div>`;
   });
+  if(oosList.length){
+    html += `<div class="oos-section"><div class="section-title" style="margin-top:6px;">Out of Stock</div>`;
+    oosList.forEach(it=>{
+      html += `<div class="oos-chip"><span class="nm">${it.name}</span><button onclick="toggleAvail('${menuKind}','${it.id}',true)">Mark Available</button></div>`;
+    });
+    html += `</div>`;
+  }
   html += `</div>`;
   if(cartCount>0){
     html += `<div class="cart-fab" onclick="openCartSheet('${menuKind}','${source}')">
@@ -809,6 +856,15 @@ function renderOrderScreen(menuKind, source){
     </div>`;
   }
   return html;
+}
+async function toggleAvail(kind, id, val){
+  const it = S.menu[kind].find(x=>x.id===id);
+  if(!it) return;
+  it.avail = val;
+  if(!val && S.cart[id]) delete S.cart[id];
+  await storeSet('menu:'+kind, S.menu[kind]);
+  toast(val ? (it.name+" marked available") : (it.name+" marked out of stock"));
+  render();
 }
 function cartAdjust(id, delta, menuKind){
   const cur = S.cart[id]||0;
