@@ -398,8 +398,18 @@ async function addOrder(order){
   const d = order.date;
   const arr = await getOrdersForDate(d);
   arr.push(order);
-  await saveOrdersForDate(d, arr);
-  return order;
+  let ok = await saveOrdersForDate(d, arr);
+  if(!ok){
+    // retry once after a short pause in case of a transient failure
+    await new Promise(r=>setTimeout(r, 600));
+    ok = await saveOrdersForDate(d, arr);
+  }
+  if(!ok){
+    // verify by reading back — some failures still persist despite a bad response
+    const check = await getOrdersForDate(d);
+    ok = check.some(o=>o.id===order.id);
+  }
+  return {order, ok};
 }
 async function patchOrder(dateStr, orderId, patch){
   const arr = await getOrdersForDate(dateStr);
@@ -616,9 +626,26 @@ function renderAdminOrders(){
       <input type="date" id="dateFilter" value="${S.adminOrdersDate}" style="border:1.5px solid var(--line);border-radius:8px;padding:8px;font-size:13px;">
       <button class="btn sm" onclick="loadAdminOrdersDate()">Load</button>
     </div>
+    <button class="btn block" style="margin-bottom:12px;" onclick="scanRecentDays()">🔎 Can't find an order? Scan last 7 days</button>
     ${orders.length===0 ? `<div class="empty"><div class="big">🧾</div><p>No orders for this date.</p></div>` :
       orders.slice().reverse().map(o=>renderOrderRow(o, true)).join('')}
   </div>`;
+}
+async function scanRecentDays(){
+  toast("Scanning last 7 days…");
+  const today = new Date();
+  let all = [];
+  for(let i=0;i<7;i++){
+    const d = new Date(today); d.setDate(d.getDate()-i);
+    const ds = todayStr(d);
+    const arr = await getOrdersForDate(ds);
+    all = all.concat(arr);
+  }
+  all.sort((a,b)=>a.createdAt-b.createdAt);
+  S.adminAllOrders = all;
+  S.adminOrdersDate = "Last 7 days";
+  render();
+  toast(all.length ? `Found ${all.length} order(s) across 7 days` : "No orders found in the last 7 days");
 }
 async function loadAdminOrdersDate(){
   const d = document.getElementById('dateFilter').value;
@@ -967,7 +994,14 @@ async function placeOrder(menuKind, source){
     status: source==='bar' ? 'pending_print' : 'printed',
     createdAt: now.getTime(),
   };
-  await addOrder(order);
+  const btn = document.querySelector('.sheet .btn.primary.block');
+  if(btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
+  const result = await addOrder(order);
+  if(!result.ok){
+    if(btn){ btn.disabled = false; btn.textContent = source==='bar' ? 'Send to Kitchen for Printing' : 'Place Order & Print'; }
+    toast("⚠️ Could not save the order — check your connection and tap the button again");
+    return; // keep cart intact so nothing is lost, let them retry
+  }
   S.cart = {}; S.orderMeta = {type:"Dine-in", table:""};
   S.ordersToday = await getOrdersForDate(order.date);
   if(S.user.role==='admin') S.adminAllOrders = S.ordersToday;
